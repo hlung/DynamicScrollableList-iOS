@@ -11,9 +11,25 @@ final class CardView: UIView {
     return view
   }()
 
-  lazy var benefitsView: BenefitsView = {
-    let view = BenefitsView()
+//  lazy var benefitsView: BenefitsView = {
+//    let view = BenefitsView()
+//    view.translatesAutoresizingMaskIntoConstraints = false
+//    return view
+//  }()
+
+//  lazy var benefitsView: UITextView = {
+//    let view = UITextView()
+//    view.translatesAutoresizingMaskIntoConstraints = false
+//    return view
+//  }()
+
+  lazy var benefitsView: UILabel = {
+    let view = UILabel()
     view.translatesAutoresizingMaskIntoConstraints = false
+    view.text = ""
+    view.numberOfLines = 0
+    view.adjustsFontSizeToFitWidth = true
+    view.minimumScaleFactor = 0.75
     return view
   }()
 

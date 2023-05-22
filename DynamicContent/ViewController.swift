@@ -4,10 +4,7 @@ class ViewController: UIViewController {
 
   lazy var addButton: UIButton = {
     let button = UIButton(type: .system, primaryAction: UIAction(title: "Add", handler: { [weak self] _ in
-      let view = BenefitItemView()
-      self?.cardView.benefitsView.stackView.addArrangedSubview(view)
-      self?.cardView.benefitsView.layoutIfNeeded()
-      self?.cardView.benefitsView.invalidateIntrinsicContentSize()
+      self?.addBenefit()
     }))
     button.translatesAutoresizingMaskIntoConstraints = false
     return button
@@ -15,12 +12,7 @@ class ViewController: UIViewController {
 
   lazy var removeButton: UIButton = {
     let button = UIButton(type: .system, primaryAction: UIAction(title: "Remove", handler: { [weak self] _ in
-      if let view = self?.cardView.benefitsView.stackView.arrangedSubviews.last {
-        self?.cardView.benefitsView.stackView.removeArrangedSubview(view)
-        view.removeFromSuperview()
-        self?.cardView.benefitsView.layoutIfNeeded()
-        self?.cardView.benefitsView.invalidateIntrinsicContentSize()
-      }
+      self?.removeBenefit()
     }))
     button.translatesAutoresizingMaskIntoConstraints = false
     return button
@@ -58,8 +50,38 @@ class ViewController: UIViewController {
     // 7 208.5
 
     for _ in 1...5 {
-      let view = BenefitItemView()
-      cardView.benefitsView.stackView.addArrangedSubview(view)
+//      let view = BenefitItemView()
+//      cardView.benefitsView.stackView.addArrangedSubview(view)
+
+      addBenefit()
+    }
+  }
+
+  private func addBenefit() {
+//      let view = BenefitItemView()
+//      self?.cardView.benefitsView.stackView.addArrangedSubview(view)
+//      self?.cardView.benefitsView.layoutIfNeeded()
+//      self?.cardView.benefitsView.invalidateIntrinsicContentSize()
+
+    if cardView.benefitsView.text?.isEmpty == false {
+      cardView.benefitsView.text! += "\n"
+    }
+    cardView.benefitsView.text! += "Hello world"
+  }
+
+  private func removeBenefit() {
+//      if let view = self?.cardView.benefitsView.stackView.arrangedSubviews.last {
+//        self?.cardView.benefitsView.stackView.removeArrangedSubview(view)
+//        view.removeFromSuperview()
+//        self?.cardView.benefitsView.layoutIfNeeded()
+//        self?.cardView.benefitsView.invalidateIntrinsicContentSize()
+//      }
+
+    if let index = cardView.benefitsView.text?.lastIndex(where: { $0 == "\n" }) {
+      cardView.benefitsView.text = String(cardView.benefitsView.text!.prefix(upTo: index))
+    }
+    else {
+      cardView.benefitsView.text = ""
     }
   }
 
