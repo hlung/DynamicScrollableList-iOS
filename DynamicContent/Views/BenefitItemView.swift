@@ -1,6 +1,6 @@
 import UIKit
 
-final class VikiPassTrackBenefitItemView: UIView {
+final class BenefitItemView: UIView {
 
   lazy var textView: UITextView = {
     let textView = UITextView()
@@ -8,9 +8,9 @@ final class VikiPassTrackBenefitItemView: UIView {
     textView.translatesAutoresizingMaskIntoConstraints = false
     textView.font = UIFont.systemFont(ofSize: 16)
     textView.backgroundColor = .init(
-      red: CGFloat.random(in: 0...1),
-      green: CGFloat.random(in: 0...1),
-      blue: CGFloat.random(in: 0...1),
+      red: .random(in: 0...1),
+      green: .random(in: 0...1),
+      blue: .random(in: 0...1),
       alpha: 1
     )
     textView.textAlignment = .left

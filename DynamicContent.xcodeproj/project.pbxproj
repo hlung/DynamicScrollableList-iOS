@@ -16,6 +16,10 @@
 		01B1CF222A1741A800CC6038 /* DynamicContentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B1CF212A1741A800CC6038 /* DynamicContentTests.swift */; };
 		01B1CF2C2A1741A800CC6038 /* DynamicContentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B1CF2B2A1741A800CC6038 /* DynamicContentUITests.swift */; };
 		01B1CF2E2A1741A800CC6038 /* DynamicContentUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B1CF2D2A1741A800CC6038 /* DynamicContentUITestsLaunchTests.swift */; };
+		01B1CF3D2A1742B200CC6038 /* BenefitItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B1CF3C2A1742B200CC6038 /* BenefitItemView.swift */; };
+		01B1CF3F2A176F5A00CC6038 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B1CF3E2A176F5A00CC6038 /* CardView.swift */; };
+		01B1CF412A177C9F00CC6038 /* NSLayoutConstraint+Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B1CF402A177C9F00CC6038 /* NSLayoutConstraint+Modifiers.swift */; };
+		01DA97162A1B930400C80141 /* BenefitsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DA97152A1B930400C80141 /* BenefitsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +53,10 @@
 		01B1CF272A1741A800CC6038 /* DynamicContentUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DynamicContentUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		01B1CF2B2A1741A800CC6038 /* DynamicContentUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicContentUITests.swift; sourceTree = "<group>"; };
 		01B1CF2D2A1741A800CC6038 /* DynamicContentUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicContentUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		01B1CF3C2A1742B200CC6038 /* BenefitItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenefitItemView.swift; sourceTree = "<group>"; };
+		01B1CF3E2A176F5A00CC6038 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		01B1CF402A177C9F00CC6038 /* NSLayoutConstraint+Modifiers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSLayoutConstraint+Modifiers.swift"; sourceTree = "<group>"; };
+		01DA97152A1B930400C80141 /* BenefitsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenefitsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +110,8 @@
 				01B1CF0A2A1741A600CC6038 /* AppDelegate.swift */,
 				01B1CF0C2A1741A600CC6038 /* SceneDelegate.swift */,
 				01B1CF0E2A1741A600CC6038 /* ViewController.swift */,
+				01DA97172A1B9CF800C80141 /* Views */,
+				01B1CF402A177C9F00CC6038 /* NSLayoutConstraint+Modifiers.swift */,
 				01B1CF102A1741A600CC6038 /* Main.storyboard */,
 				01B1CF132A1741A800CC6038 /* Assets.xcassets */,
 				01B1CF152A1741A800CC6038 /* LaunchScreen.storyboard */,
@@ -125,6 +135,16 @@
 				01B1CF2D2A1741A800CC6038 /* DynamicContentUITestsLaunchTests.swift */,
 			);
 			path = DynamicContentUITests;
+			sourceTree = "<group>";
+		};
+		01DA97172A1B9CF800C80141 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				01B1CF3E2A176F5A00CC6038 /* CardView.swift */,
+				01DA97152A1B930400C80141 /* BenefitsView.swift */,
+				01B1CF3C2A1742B200CC6038 /* BenefitItemView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -260,7 +280,11 @@
 			files = (
 				01B1CF0F2A1741A600CC6038 /* ViewController.swift in Sources */,
 				01B1CF0B2A1741A600CC6038 /* AppDelegate.swift in Sources */,
+				01DA97162A1B930400C80141 /* BenefitsView.swift in Sources */,
+				01B1CF412A177C9F00CC6038 /* NSLayoutConstraint+Modifiers.swift in Sources */,
 				01B1CF0D2A1741A600CC6038 /* SceneDelegate.swift in Sources */,
+				01B1CF3D2A1742B200CC6038 /* BenefitItemView.swift in Sources */,
+				01B1CF3F2A176F5A00CC6038 /* CardView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
