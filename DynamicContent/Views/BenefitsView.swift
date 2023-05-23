@@ -2,6 +2,16 @@ import UIKit
 
 final class BenefitsView: UIView {
 
+  var scaleFactor: CGFloat = 1.0 {
+    didSet {
+      stackView.spacing = 12 * scaleFactor
+      for view in itemViews {
+        view.textView.font = .systemFont(ofSize: 16 * scaleFactor)
+      }
+      setNeedsLayout()
+    }
+  }
+
   lazy var scrollView: UIScrollView = {
     let scrollView = UIScrollView()
     scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -13,7 +23,7 @@ final class BenefitsView: UIView {
     let stackView = UIStackView()
     stackView.translatesAutoresizingMaskIntoConstraints = false
     stackView.axis = .vertical
-    stackView.spacing = 12
+    stackView.spacing = 12 * scaleFactor
     stackView.distribution = .fill
     stackView.alignment = .center
     stackView.backgroundColor = .systemGray
@@ -86,6 +96,10 @@ final class BenefitsView: UIView {
 //      let size: CGFloat = stackView.bounds.height > 200 ? 12 : 16
 //      view.textView.font = .systemFont(ofSize: size)
 //    }
+  }
+
+  func adjustIfNeeded() {
+    
   }
 
 }

@@ -11,11 +11,11 @@ final class CardView: UIView {
     return view
   }()
 
-//  lazy var benefitsView: BenefitsView = {
-//    let view = BenefitsView()
-//    view.translatesAutoresizingMaskIntoConstraints = false
-//    return view
-//  }()
+  lazy var benefitsView: BenefitsView = {
+    let view = BenefitsView()
+    view.translatesAutoresizingMaskIntoConstraints = false
+    return view
+  }()
 
 //  lazy var benefitsView: UITextView = {
 //    let view = UITextView()
@@ -23,15 +23,15 @@ final class CardView: UIView {
 //    return view
 //  }()
 
-  lazy var benefitsView: UILabel = {
-    let view = UILabel()
-    view.translatesAutoresizingMaskIntoConstraints = false
-    view.text = ""
-    view.numberOfLines = 0
-    view.adjustsFontSizeToFitWidth = true
-    view.minimumScaleFactor = 0.75
-    return view
-  }()
+//  lazy var benefitsView: UILabel = {
+//    let view = UILabel()
+//    view.translatesAutoresizingMaskIntoConstraints = false
+//    view.text = ""
+//    view.numberOfLines = 0
+//    view.adjustsFontSizeToFitWidth = true
+//    view.minimumScaleFactor = 0.75
+//    return view
+//  }()
 
   lazy var footerView: UILabel = {
     let view = UILabel()
@@ -93,6 +93,63 @@ final class CardView: UIView {
   override func layoutSubviews() {
     super.layoutSubviews()
 //    print(type(of: self), #function)
+  }
+
+  func addBenefit() {
+    let view = BenefitItemView()
+    benefitsView.stackView.addArrangedSubview(view)
+    benefitsView.layoutIfNeeded() // make stack view have correct size, so we can calculate intrinsicContentSize later
+    benefitsView.invalidateIntrinsicContentSize()
+
+//    if cardView.benefitsView.text?.isEmpty == false {
+//      cardView.benefitsView.text! += "\n"
+//    }
+//    cardView.benefitsView.text! += "Hello world"
+  }
+
+  func removeBenefit() {
+    if let view = benefitsView.stackView.arrangedSubviews.last {
+      benefitsView.stackView.removeArrangedSubview(view)
+      view.removeFromSuperview()
+      benefitsView.layoutIfNeeded()
+      benefitsView.invalidateIntrinsicContentSize()
+    }
+
+//    if let index = cardView.benefitsView.text?.lastIndex(where: { $0 == "\n" }) {
+//      cardView.benefitsView.text = String(cardView.benefitsView.text!.prefix(upTo: index))
+//    }
+//    else {
+//      cardView.benefitsView.text = ""
+//    }
+  }
+
+  private func shrinkIfNeeded() {
+    print(
+      "benefitsView.invalidateIntrinsicContentSize()",
+      "benefitsView.intrinsicContentSize.height", benefitsView.intrinsicContentSize.height,
+      "benefitsView.bounds.height", benefitsView.bounds.height
+    )
+    benefitsView.setNeedsLayout()
+    benefitsView.layoutIfNeeded() // force layout to get bounds size
+    print(
+      "benefitsView.layoutIfNeeded() 2",
+      "benefitsView.intrinsicContentSize.height", benefitsView.intrinsicContentSize.height,
+      "benefitsView.bounds.height", benefitsView.bounds.height
+    )
+
+    // with intrinsic and bounds sizes, now we can try to shrink it
+    while benefitsView.intrinsicContentSize.height > benefitsView.bounds.height,
+          benefitsView.scaleFactor > 0.75 {
+      benefitsView.scaleFactor -= 0.01
+//      benefitsView.setNeedsLayout()
+      benefitsView.layoutIfNeeded()
+    }
+
+    print(
+      "benefitsView.layoutIfNeeded() 3",
+      "benefitsView.intrinsicContentSize.height", benefitsView.intrinsicContentSize.height,
+      "benefitsView.bounds.height", benefitsView.bounds.height
+    )
   }
 
 }
