@@ -129,6 +129,8 @@ final class BenefitsView: UIView {
     invalidateIntrinsicContentSize()
   }
 
+  /// Overrides `intrinsicContentSize` to zero, forces layout to get the height proposed by superview,
+  /// then removes that override.
   private func heightWhenNoContent() -> CGFloat {
     overridingIntrinsicContentSize = .zero
     invalidateIntrinsicContentSize()
