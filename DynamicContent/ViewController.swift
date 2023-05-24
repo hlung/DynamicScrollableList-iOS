@@ -41,7 +41,8 @@ class ViewController: UIViewController {
       cardView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50),
       cardView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 100),
       cardView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-      cardView.heightAnchor.constraint(equalToConstant: 300)
+//      cardView.heightAnchor.constraint(equalToConstant: 300)
+      cardView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
     ])
 
 //    cardView.addBenefit()
