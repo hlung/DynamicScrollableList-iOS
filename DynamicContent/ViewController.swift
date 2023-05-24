@@ -41,7 +41,6 @@ class ViewController: UIViewController {
       cardView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50),
       cardView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 100),
       cardView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-//      cardView.heightAnchor.constraint(equalToConstant: 300)
       cardView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
     ])
 
@@ -51,16 +50,6 @@ class ViewController: UIViewController {
       cardView.addBenefit()
     }
   }
-
-//  override func viewDidLayoutSubviews() {
-//    print(#function)
-//    print(itemViews.count, stackView.bounds.height)
-//
-//    for view in itemViews {
-//      let size: CGFloat = stackView.bounds.height > 200 ? 12 : 16
-//      view.textView.font = .systemFont(ofSize: size)
-//    }
-//  }
 
 }
 

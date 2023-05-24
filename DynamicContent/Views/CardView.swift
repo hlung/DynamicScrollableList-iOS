@@ -127,33 +127,4 @@ final class CardView: UIView {
 //    }
   }
 
-//  private func shrinkIfNeeded() {
-//    print(
-//      "benefitsView.invalidateIntrinsicContentSize()",
-//      "benefitsView.intrinsicContentSize.height", benefitsView.intrinsicContentSize.height,
-//      "benefitsView.bounds.height", benefitsView.bounds.height
-//    )
-//    benefitsView.setNeedsLayout()
-//    benefitsView.layoutIfNeeded() // force layout to get bounds size
-//    print(
-//      "benefitsView.layoutIfNeeded() 2",
-//      "benefitsView.intrinsicContentSize.height", benefitsView.intrinsicContentSize.height,
-//      "benefitsView.bounds.height", benefitsView.bounds.height
-//    )
-//
-//    // with intrinsic and bounds sizes, now we can try to shrink it
-//    while benefitsView.intrinsicContentSize.height > benefitsView.bounds.height,
-//          benefitsView.scaleFactor > 0.75 {
-//      benefitsView.scaleFactor -= 0.01
-////      benefitsView.setNeedsLayout()
-//      benefitsView.layoutIfNeeded()
-//    }
-//
-//    print(
-//      "benefitsView.layoutIfNeeded() 3",
-//      "benefitsView.intrinsicContentSize.height", benefitsView.intrinsicContentSize.height,
-//      "benefitsView.bounds.height", benefitsView.bounds.height
-//    )
-//  }
-
 }
