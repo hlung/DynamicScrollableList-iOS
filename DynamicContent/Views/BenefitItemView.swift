@@ -17,7 +17,7 @@ final class BenefitItemView: UIView {
 
   lazy var textView: UITextView = {
     let textView = UITextView()
-    textView.text = "Hello world Hello world Hello world"
+    textView.text = "Hello world Hello world Hello world Hello world"
     textView.translatesAutoresizingMaskIntoConstraints = false
     textView.font = UIFont.systemFont(ofSize: 16)
     textView.backgroundColor = .init(

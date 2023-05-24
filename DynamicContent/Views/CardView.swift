@@ -5,7 +5,7 @@ final class CardView: UIView {
   lazy var headerView: UILabel = {
     let view = UILabel()
     view.translatesAutoresizingMaskIntoConstraints = false
-    view.text = "Header"
+    view.text = "Header Image"
     view.textAlignment = .center
     view.backgroundColor = .systemTeal
     return view
@@ -36,7 +36,7 @@ final class CardView: UIView {
   lazy var footerView: UILabel = {
     let view = UILabel()
     view.translatesAutoresizingMaskIntoConstraints = false
-    view.text = "Footer"
+    view.text = "Plans"
     view.textAlignment = .center
     view.backgroundColor = .systemTeal
     return view
