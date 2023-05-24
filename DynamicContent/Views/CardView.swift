@@ -67,20 +67,20 @@ final class CardView: UIView {
     addSubview(benefitsView)
     addSubview(footerView)
 
-    benefitsView.setContentCompressionResistancePriority(.init(900), for: .vertical)
+    // We shrink headerView first, then footerView, and benefitsView.
+    // So we need to set priorities for these views in that order, from lowest to highest.
 
     NSLayoutConstraint.activate([
       headerView.topAnchor.constraint(equalTo: topAnchor),
       headerView.leadingAnchor.constraint(equalTo: leadingAnchor),
       headerView.trailingAnchor.constraint(equalTo: trailingAnchor),
-      headerView.heightAnchor.constraint(equalToConstant: 100).priority(.init(800)),
+      headerView.heightAnchor.constraint(equalToConstant: 100).priority(.init(700)),
       headerView.heightAnchor.constraint(greaterThanOrEqualToConstant: 50),
 
       footerView.leadingAnchor.constraint(equalTo: leadingAnchor),
       footerView.trailingAnchor.constraint(equalTo: trailingAnchor),
       footerView.bottomAnchor.constraint(equalTo: bottomAnchor),
-      // footer is shrinked first, so it has lower priority
-      footerView.heightAnchor.constraint(equalToConstant: 100).priority(.init(700)),
+      footerView.heightAnchor.constraint(equalToConstant: 100).priority(.init(800)),
       footerView.heightAnchor.constraint(greaterThanOrEqualToConstant: 50),
 
       benefitsView.leadingAnchor.constraint(equalTo: leadingAnchor),
@@ -88,18 +88,18 @@ final class CardView: UIView {
       benefitsView.topAnchor.constraint(equalTo: headerView.bottomAnchor),
       benefitsView.bottomAnchor.constraint(equalTo: footerView.topAnchor),
     ])
-  }
 
-  override func layoutSubviews() {
-    super.layoutSubviews()
-//    print(type(of: self), #function)
+    benefitsView.setContentCompressionResistancePriority(.init(900), for: .vertical)
   }
 
   func addBenefit() {
     let view = BenefitItemView()
-    benefitsView.stackView.addArrangedSubview(view)
-    benefitsView.layoutIfNeeded() // make stack view have correct size, so we can calculate intrinsicContentSize later
-    benefitsView.invalidateIntrinsicContentSize()
+    view.translatesAutoresizingMaskIntoConstraints = false
+    benefitsView.itemViews = benefitsView.itemViews + [view]
+
+//    benefitsView.stackView.addArrangedSubview(view)
+//    benefitsView.layoutIfNeeded() // make stack view have correct size, so we can calculate intrinsicContentSize later
+//    benefitsView.invalidateIntrinsicContentSize()
 
 //    if cardView.benefitsView.text?.isEmpty == false {
 //      cardView.benefitsView.text! += "\n"
@@ -108,12 +108,16 @@ final class CardView: UIView {
   }
 
   func removeBenefit() {
-    if let view = benefitsView.stackView.arrangedSubviews.last {
-      benefitsView.stackView.removeArrangedSubview(view)
-      view.removeFromSuperview()
-      benefitsView.layoutIfNeeded()
-      benefitsView.invalidateIntrinsicContentSize()
+    if !benefitsView.itemViews.isEmpty {
+      benefitsView.itemViews.removeLast()
     }
+
+//    if let view = benefitsView.stackView.arrangedSubviews.last {
+//      benefitsView.stackView.removeArrangedSubview(view)
+//      view.removeFromSuperview()
+//      benefitsView.layoutIfNeeded()
+//      benefitsView.invalidateIntrinsicContentSize()
+//    }
 
 //    if let index = cardView.benefitsView.text?.lastIndex(where: { $0 == "\n" }) {
 //      cardView.benefitsView.text = String(cardView.benefitsView.text!.prefix(upTo: index))
@@ -123,33 +127,33 @@ final class CardView: UIView {
 //    }
   }
 
-  private func shrinkIfNeeded() {
-    print(
-      "benefitsView.invalidateIntrinsicContentSize()",
-      "benefitsView.intrinsicContentSize.height", benefitsView.intrinsicContentSize.height,
-      "benefitsView.bounds.height", benefitsView.bounds.height
-    )
-    benefitsView.setNeedsLayout()
-    benefitsView.layoutIfNeeded() // force layout to get bounds size
-    print(
-      "benefitsView.layoutIfNeeded() 2",
-      "benefitsView.intrinsicContentSize.height", benefitsView.intrinsicContentSize.height,
-      "benefitsView.bounds.height", benefitsView.bounds.height
-    )
-
-    // with intrinsic and bounds sizes, now we can try to shrink it
-    while benefitsView.intrinsicContentSize.height > benefitsView.bounds.height,
-          benefitsView.scaleFactor > 0.75 {
-      benefitsView.scaleFactor -= 0.01
-//      benefitsView.setNeedsLayout()
-      benefitsView.layoutIfNeeded()
-    }
-
-    print(
-      "benefitsView.layoutIfNeeded() 3",
-      "benefitsView.intrinsicContentSize.height", benefitsView.intrinsicContentSize.height,
-      "benefitsView.bounds.height", benefitsView.bounds.height
-    )
-  }
+//  private func shrinkIfNeeded() {
+//    print(
+//      "benefitsView.invalidateIntrinsicContentSize()",
+//      "benefitsView.intrinsicContentSize.height", benefitsView.intrinsicContentSize.height,
+//      "benefitsView.bounds.height", benefitsView.bounds.height
+//    )
+//    benefitsView.setNeedsLayout()
+//    benefitsView.layoutIfNeeded() // force layout to get bounds size
+//    print(
+//      "benefitsView.layoutIfNeeded() 2",
+//      "benefitsView.intrinsicContentSize.height", benefitsView.intrinsicContentSize.height,
+//      "benefitsView.bounds.height", benefitsView.bounds.height
+//    )
+//
+//    // with intrinsic and bounds sizes, now we can try to shrink it
+//    while benefitsView.intrinsicContentSize.height > benefitsView.bounds.height,
+//          benefitsView.scaleFactor > 0.75 {
+//      benefitsView.scaleFactor -= 0.01
+////      benefitsView.setNeedsLayout()
+//      benefitsView.layoutIfNeeded()
+//    }
+//
+//    print(
+//      "benefitsView.layoutIfNeeded() 3",
+//      "benefitsView.intrinsicContentSize.height", benefitsView.intrinsicContentSize.height,
+//      "benefitsView.bounds.height", benefitsView.bounds.height
+//    )
+//  }
 
 }

@@ -2,9 +2,22 @@ import UIKit
 
 final class BenefitItemView: UIView {
 
+  lazy var bulletLabel: UILabel = {
+    let label = UILabel()
+    label.text = "- "
+    label.translatesAutoresizingMaskIntoConstraints = false
+    label.font = UIFont.systemFont(ofSize: 16)
+    label.adjustsFontSizeToFitWidth = false
+    label.textAlignment = .left
+    label.textColor = .black
+    label.backgroundColor = .systemGreen
+    label.setContentCompressionResistancePriority(.required, for: .horizontal)
+    return label
+  }()
+
   lazy var textView: UITextView = {
     let textView = UITextView()
-    textView.text = "Hello world"
+    textView.text = "Hello world Hello world Hello world"
     textView.translatesAutoresizingMaskIntoConstraints = false
     textView.font = UIFont.systemFont(ofSize: 16)
     textView.backgroundColor = .init(
@@ -44,10 +57,14 @@ final class BenefitItemView: UIView {
   // MARK: - Methods
 
   private func setupViews() {
+    addSubview(bulletLabel)
     addSubview(textView)
-    self.translatesAutoresizingMaskIntoConstraints = false
+
     NSLayoutConstraint.activate([
-      textView.leadingAnchor.constraint(equalTo: leadingAnchor),
+      bulletLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
+      bulletLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
+
+      textView.leadingAnchor.constraint(equalTo: bulletLabel.trailingAnchor),
       textView.trailingAnchor.constraint(equalTo: trailingAnchor),
       textView.topAnchor.constraint(equalTo: topAnchor),
       textView.bottomAnchor.constraint(equalTo: bottomAnchor)
