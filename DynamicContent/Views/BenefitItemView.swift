@@ -21,9 +21,9 @@ final class BenefitItemView: UIView {
     textView.translatesAutoresizingMaskIntoConstraints = false
     textView.font = UIFont.systemFont(ofSize: 16)
     textView.backgroundColor = .init(
-      red: .random(in: 0...1),
-      green: .random(in: 0...1),
-      blue: .random(in: 0...1),
+      red: .random(in: 0.1...1),
+      green: .random(in: 0.1...1),
+      blue: .random(in: 0.1...1),
       alpha: 1
     )
     textView.textAlignment = .left
