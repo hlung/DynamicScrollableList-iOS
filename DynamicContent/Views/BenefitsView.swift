@@ -4,6 +4,18 @@ final class BenefitsView: UIView {
 
   // MARK: - Properties
 
+  private let regularConfig = Config(fontSize: 16, itemSpacing: 12)
+  private let compactConfig = Config(fontSize: 12, itemSpacing: 8)
+
+  private var currentConfig: Config {
+    didSet {
+      stackView.spacing = currentConfig.itemSpacing
+      for view in itemViews {
+        view.textView.font = .systemFont(ofSize: currentConfig.fontSize)
+      }
+    }
+  }
+
   var itemViews: [BenefitItemView] = [] {
     didSet {
       for view in stackView.arrangedSubviews {
@@ -11,20 +23,10 @@ final class BenefitsView: UIView {
         view.removeFromSuperview()
       }
       for view in itemViews {
-        view.textView.font = .systemFont(ofSize: 16 * scaleFactor)
+        view.textView.font = .systemFont(ofSize: currentConfig.fontSize)
         stackView.addArrangedSubview(view)
       }
-
-      adjustScaleFactorIfNeeded()
-    }
-  }
-
-  private var scaleFactor: CGFloat = 1.0 {
-    didSet {
-      stackView.spacing = 12 * scaleFactor
-      for view in itemViews {
-        view.textView.font = .systemFont(ofSize: 16 * scaleFactor)
-      }
+      updateCurrentConfigIfNeeded()
     }
   }
 
@@ -52,6 +54,7 @@ final class BenefitsView: UIView {
   // MARK: - Inits
 
   init() {
+    currentConfig = regularConfig
     super.init(frame: .zero)
     setupViews()
   }
@@ -74,7 +77,7 @@ final class BenefitsView: UIView {
 
   override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
     super.traitCollectionDidChange(previousTraitCollection)
-    adjustScaleFactorIfNeeded()
+    updateCurrentConfigIfNeeded()
   }
 
   // MARK: - Methods
@@ -97,27 +100,27 @@ final class BenefitsView: UIView {
       stackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
     ])
 
-    // trigger initial scaleFactor didSet
-    scaleFactor = 1.0
+    // trigger currentConfig didSet
+    currentConfig = regularConfig
   }
 
   /**
-   Adjusts `scaleFactor` if needed (on changing itemViews, view size, trait collection, etc.).
+   Updates `currentConfig` if needed (on changing itemViews, view size, trait collection, etc.).
    */
-  private func adjustScaleFactorIfNeeded() {
+  private func updateCurrentConfigIfNeeded() {
     let threshold = heightWhenNoContent()
 
     // layout stackView in full scale if needed
-    if scaleFactor != 1.0 {
-      scaleFactor = 1.0
+    if currentConfig != regularConfig {
+      currentConfig = regularConfig
       stackView.setNeedsLayout()
       stackView.layoutIfNeeded()
     }
 
-    // if stackView height is bigger, adjust scaleFactor
+    // if stackView height is bigger, update currentConfig
     // print(stackView.bounds.height, threshold)
     if stackView.bounds.height > threshold {
-      scaleFactor = 0.75
+      currentConfig = compactConfig
       stackView.setNeedsLayout()
       stackView.layoutIfNeeded()
     }
@@ -143,5 +146,13 @@ final class BenefitsView: UIView {
     return minimumHeight
   }
 
+}
+
+extension BenefitsView {
+
+  private struct Config: Equatable {
+    let fontSize: CGFloat
+    let itemSpacing: CGFloat
+  }
 
 }
